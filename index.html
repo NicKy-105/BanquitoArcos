@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Banco Pichincha | Portal en línea</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --amarillo: #f5cf00;
+      --azul-oscuro: #15234a;
+      --azul-claro: #375a7f;
+      --gris-fondo: #f5f5f5;
+      --blanco: #ffffff;
+      --radio: 8px;
+      --trans: 0.3s;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+    body {
+      background: var(--gris-fondo);
+      color: var(--azul-oscuro);
+      line-height: 1.6;
+    }
+    img { max-width: 100%; display: block; }
+    /* HEADER */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      background: var(--blanco);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: var(--azul-oscuro);
+    }
+    .logo div {
+      width: 24px;
+      height: 24px;
+      background: var(--amarillo);
+      border-radius: var(--radio);
+    }
+    header button {
+      background: var(--amarillo);
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: var(--radio);
+      font-weight: 600;
+      cursor: pointer;
+      transition: filter var(--trans);
+    }
+    header button:hover {
+      filter: brightness(1.1);
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 70vh;
+      background: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1332&q=80') center/cover no-repeat;
+      color: var(--blanco);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+    }
+    .hero .contenido {
+      position: relative;
+      max-width: 650px;
+      padding: 2rem;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    }
+    .hero p {
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+    .hero ul {
+      list-style: disc;
+      margin: 0 0 1.5rem 1.5rem;
+      text-align: left;
+    }
+    .hero .btn-off {
+      background: rgba(255,255,255,0.2);
+      border: 2px solid var(--blanco);
+      color: var(--blanco);
+      padding: 0.7rem 1.6rem;
+      border-radius: var(--radio);
+      cursor: not-allowed;
+      font-weight: 600;
+    }
+
+    /* SECTIONS */
+    section { padding: 2rem 1rem; }
+
+    /* LOGIN FORM */
+    #login {
+      max-width: 360px;
+      margin: 2rem auto;
+      background: var(--blanco);
+      padding: 2.2rem;
+      border-radius: var(--radio);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    #login h2 {
+      text-align: center;
+      margin-bottom: 1.2rem;
+      font-weight: 600;
+      color: var(--azul-oscuro);
+    }
+    #login input {
+      width: 100%;
+      padding: 0.7rem;
+      margin: 0.5rem 0;
+      border: 1px solid #ccc;
+      border-radius: var(--radio);
+    }
+    #login button {
+      width: 100%;
+      background: var(--azul-claro);
+      color: var(--blanco);
+      padding: 0.7rem;
+      border: none;
+      border-radius: var(--radio);
+      margin-top: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: filter var(--trans);
+    }
+    #login button:hover {
+      filter: brightness(1.1);
+    }
+
+    /* NAV BUTTONS */
+    #nav {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+    .navbtn {
+      flex: 1 1 150px;
+      max-width: 280px;
+      background: var(--amarillo);
+      border: none;
+      color: var(--azul-oscuro);
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 0.8rem;
+      border-radius: var(--radio);
+      cursor: pointer;
+      transition: background var(--trans), transform var(--trans);
+    }
+    .navbtn.active {
+      background: var(--azul-claro);
+      color: var(--blanco);
+      transform: translateY(-2px);
+    }
+    .navbtn:hover {
+      background: var(--azul-claro);
+      color: var(--blanco);
+    }
+
+    /* PANELS */
+    .panel {
+      max-width: 720px;
+      margin: 0 auto 2rem;
+      background: var(--blanco);
+      padding: 2rem;
+      border-radius: var(--radio);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+    .panel h2 {
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-weight: 600;
+      color: var(--azul-oscuro);
+    }
+    form * {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+    select, input, textarea {
+      padding: 0.65rem;
+      border: 1px solid #ccc;
+      border-radius: var(--radio);
+      font-size: 1rem;
+    }
+    textarea { min-height: 140px; resize: vertical; }
+    .btn-azul {
+      background: var(--azul-claro);
+      color: var(--blanco);
+      border: none;
+      padding: 0.85rem;
+      border-radius: var(--radio);
+      font-size: 1rem;
+      cursor: pointer;
+      transition: filter var(--trans);
+    }
+    .btn-azul:hover { filter: brightness(1.1); }
+
+    /* TABLE */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 0.75rem;
+      text-align: left;
+    }
+    th {
+      background: #eee;
+    }
+
+    /* UTILS */
+    .oculto { display: none; }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2rem; }
+      header { flex-direction: column; gap: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo"><div></div>BANCO PICHINCHA</div>
+    <button onclick="ver('login')">Acceso clientes</button>
+  </header>
+
+  <!-- PORTADA -->
+  <section id="home" class="hero">
+    <div class="contenido">
+      <h1>Pichincha Empresas: actualiza tu Token y revisa nuestros manuales</h1>
+      <p>Gestiona tus finanzas 24/7 con Banco Pichincha en línea:</p>
+      <ul>
+        <li>Consulta saldos y movimientos.</li>
+        <li>Realiza transferencias nacionales e internacionales.</li>
+        <li>Paga servicios y tarjetas.</li>
+        <li>Recibe soporte directo.</li>
+      </ul>
+      <button class="btn-off" title="Solo demostración">Conoce más</button>
+    </div>
+  </section>
+
+  <!-- LOGIN -->
+  <section id="login" class="oculto">
+    <h2>Ingreso a Banca Web</h2>
+    <input type="text" placeholder="Cédula / Pasaporte">
+    <input type="password" placeholder="Contraseña">
+    <button onclick="toPortal()">Entrar</button>
+  </section>
+
+  <!-- PORTAL -->
+  <section id="portal" class="oculto">
+    <div id="nav">
+      <button class="navbtn active" onclick="show('resumen')">Resumen</button>
+      <button class="navbtn" onclick="show('transferir')">Transferir</button>
+      <button class="navbtn" onclick="show('pagar')">Pagar</button>
+      <button class="navbtn" onclick="show('soporte')">Soporte</button>
+    </div>
+
+    <div id="resumen" class="panel">
+      <h2>Mis cuentas</h2>
+      <table>
+        <thead><tr><th>Producto</th><th>Número</th><th>Saldo</th></tr></thead>
+        <tbody>
+          <tr><td>Ahorros</td><td>2200-123-456</td><td>$1 200.00</td></tr>
+          <tr><td>Corriente</td><td>0001-987-654</td><td>$500.00</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="transferir" class="panel oculto">
+      <h2>Transferir</h2>
+      <form onsubmit="alert('Transferencia enviada ✔');return false;">
+        <select><option>2200-123-456</option><option>0001-987-654</option></select>
+        <input type="text" placeholder="Cuenta destino">
+        <input type="number" step="0.01" placeholder="Monto">
+        <button class="btn-azul">Enviar</button>
+      </form>
+    </div>
+
+    <div id="pagar" class="panel oculto">
+      <h2>Pagar servicio</h2>
+      <form onsubmit="alert('Pago realizado ✔');return false;">
+        <select><option>Seleccione</option><option>Luz</option><option>Agua</option><option>Tarjeta de crédito</option></select>
+        <input type="text" placeholder="Contrato / Tarjeta">
+        <button class="btn-azul">Pagar</button>
+      </form>
+    </div>
+
+    <div id="soporte" class="panel oculto">
+      <h2>Soporte</h2>
+      <form onsubmit="alert('Consulta enviada ✔');return false;">
+        <textarea placeholder="Escriba su consulta"></textarea>
+        <button class="btn-azul">Enviar</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- JS -->
+  <script>
+    function toPortal() {
+      ver('portal');
+      show('resumen');
+    }
+    function ver(id) {
+      document.querySelectorAll('section').forEach(s => s.classList.add('oculto'));
+      document.getElementById(id).classList.remove('oculto');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    function show(panelId) {
+      document.querySelectorAll('#portal .panel').forEach(p => p.classList.add('oculto'));
+      document.getElementById(panelId).classList.remove('oculto');
+      document.querySelectorAll('.navbtn').forEach(b => b.classList.remove('active'));
+      const map = { resumen: 0, transferir: 1, pagar: 2, soporte: 3 };
+      document.querySelectorAll('.navbtn')[map[panelId]].classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
